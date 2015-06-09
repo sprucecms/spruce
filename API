@@ -1,0 +1,57 @@
+/docs               POST    Create a new document
+                    GET     Iterate over all documents in the system
+/docs/:id           GET     Get the current state of a document
+                    PUT     Update (or create) a document
+                    DELETE  Delete a document
+
+
+/doc-titles         GET     Get a sorted list of document titles
+        ?q=                 Optional query criteria
+
+
+/aliases            POST
+                    GET
+/aliases/:id        GET
+                    PUT
+                    DELETE
+
+
+/redirects          POST
+                    GET
+/redirects/:id      GET
+                    PUT
+                    DELETE
+
+
+/images             POST    Create a new image (image data in post body)
+                    GET     Iterate over all images in the system
+/images/:id         GET     Get metadata and a link reference to the image requested
+                    PUT     Update metadata for the image (but not the image file itself)
+                            May include instructions to create additional variants
+                    DELETE  Delete metadata for the image, the image itself, all
+                      variants of the image, and all references to the image
+                      or any of its variants. 
+/images/:id/crops
+/images/:id/sizes
+        
+  width             Width given, height automagically selected to preserve aspect ratio.
+  xheight           Height given, width automagically selected to preserve aspect ratio.
+  widthxheight      Maximum values of height and width given, aspect ratio preserved.
+  widthxheight^     Minimum values of width and height given, aspect ratio preserved.
+  widthxheight!     Width and height emphatically given, original aspect ratio ignored.
+  widthxheight>     Shrinks an image with dimension(s) larger than the corresponding width and/or height argument(s).
+  widthxheight<     Enlarges an image with dimension(s) smaller than the corresponding width and/or height argument(s).
+
+
+/roles              POST
+                    GET
+/roles/:id          GET
+                    PUT
+                    DELETE
+
+
+/users              POST
+                    GET
+/users/:id          GET
+                    PUT
+                    DELETE
