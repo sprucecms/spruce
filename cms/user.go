@@ -1,4 +1,4 @@
-package spruce
+package cms
 
 type User struct {
 	Key   string

@@ -1,4 +1,4 @@
-package spruce
+package cms
 
 type ResourceRepo interface {
 	Store(resource Resource)

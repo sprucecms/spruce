@@ -1,4 +1,4 @@
-package spruce
+package cms
 
 import null "gopkg.in/guregu/null.v2"
 
