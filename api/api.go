@@ -27,6 +27,10 @@ func MountAt(prefix string, app *sprucelib.SpruceApp) http.Handler {
 	return m.router
 }
 
+// GET /<APIPrefix>/
+//
+// Returns version information for the API
+//
 func (m apiManager) apiMetadata(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		Version string
