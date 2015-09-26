@@ -1,9 +1,35 @@
 package api
 
 import (
-	"fmt"
+	"encoding/json"
+	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/sprucecms/spruce/sprucelib"
 )
 
-func Start() {
-	fmt.Println("API started /api")
+const Version string = "0.0.1"
+
+type apiManager struct {
+	prefix string
+	router *mux.Router
+	app    *sprucelib.SpruceApp
+}
+
+func MountAt(prefix string, app *sprucelib.SpruceApp) http.Handler {
+	m := apiManager{prefix: prefix}
+	m.router = mux.NewRouter().PathPrefix(m.prefix).Subrouter()
+	m.app = app
+
+	m.router.HandleFunc("/", m.apiMetadata)
+
+	return m.router
+}
+
+func (m apiManager) apiMetadata(w http.ResponseWriter, r *http.Request) {
+	data := struct {
+		Version string
+	}{Version: Version}
+	json.NewEncoder(w).Encode(data)
 }
