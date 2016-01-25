@@ -1,12 +1,14 @@
 package sprucelib
 
 import (
-	"fmt"
 	"path/filepath"
+
+	log "github.com/Sirupsen/logrus"
 )
 
 type SpruceApp struct {
 	adminDir   string
+	Logger     *log.Logger
 	DataStore  DataStore
 	AssetStore AssetStore
 }
@@ -18,11 +20,13 @@ type AssetStore interface {
 }
 
 func NewSpruceApp() *SpruceApp {
-	return &SpruceApp{}
+	a := &SpruceApp{}
+	a.Logger = log.New()
+	return a
 }
 
 func (app *SpruceApp) AdminDir() string {
-	dir := "./web/admin"
+	dir := "./web/spruceadmin/dist"
 	if app.adminDir != "" {
 		dir = app.adminDir
 	}
@@ -30,6 +34,6 @@ func (app *SpruceApp) AdminDir() string {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Admin Dir: '%s'\n", dir)
+	app.Logger.WithFields(log.Fields{"adminDir": dir}).Info("CMS admin app path")
 	return dir
 }
