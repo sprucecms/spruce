@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ .Title }}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="{{ .MetaDescription }}">
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+  <h1>{{ .Title }}</h1>
+  <p>{{ printf "%s" .Body }}</p>
+  <h2>Partials</h2>
+  <strong>node1</strong>
+  <pre>{{ partial "node1" }}</pre>
+</body>
+</html>

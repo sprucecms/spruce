@@ -1,0 +1,65 @@
+TYPE: Generic
+==================================
+  Template: 
+
+RESOURCE: home
+==================================
+  Type: Generic
+  Template: Home (overrides the Type template)
+  Title: Miami Valley Gaming
+  Meta Description:
+  OG Title:
+  OG Short Title:
+
+RESOURCE: app
+===================================
+  Type: Generic
+  Template: Generic (does not override the Type template for the Generic Type)
+  Title: Download the Miami Valley Gaming App
+
+QUERY: promotions
+===================================
+  Criteria: WHERE type = 'promotion' AND isPublished = 't' ORDER BY createdAt DESC LIMIT 3
+  Template: promotions
+
+
+TEMPLATE: home
+=================================
+<header>
+  <h1>{{ .Img "logo.gif" }} {{ .Title }}</h1>
+  <menu/>
+</header>
+
+<content>
+  <h1>Current Promotions</h1>
+
+  <div promotions>
+    {{ .Get "promotions" | template "promotions" }}
+  </div>
+
+  <footer>
+    {{ .Render "app" }}
+  </footer>
+</content>
+
+
+
+TEMPLATE: promotions
+====================================
+<div promotions>
+  {{ range . }}
+    {{ template "promotion" . }}
+  {{ end }}
+</div>
+
+TEMPLATE: promotion
+====================================
+<div promotion>
+  <img src="{{ .Image.URL }}"/>
+  <h2 promotion-title>
+    {{ .Title }}
+  </h2>
+  <p>
+    {{ .Description }}
+  </p>
+</div>
