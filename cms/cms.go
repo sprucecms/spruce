@@ -1,3 +1,11 @@
+// Copyright 2016 Aaron Longwell. All rights reserved.
+// Use of this source code is governed by the Apache License
+// that can be found in the LICENSE file.
+
+/*
+Package cms pertains to the CMS front-end resolver. This code handles
+all URIs that aren't handled by either the admin or API components.
+*/
 package cms
 
 import (
@@ -14,6 +22,9 @@ type cmsManager struct {
 	app    *lib.SpruceApp
 }
 
+// Returns an http.Handler that mounts the CMS features at the
+// supplied prefix.
+//
 func MountAt(prefix string, app *lib.SpruceApp) http.Handler {
 	m := cmsManager{prefix: prefix}
 	m.router = mux.NewRouter()

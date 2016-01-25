@@ -1,3 +1,11 @@
+// Copyright 2016 Aaron Longwell. All rights reserved.
+// Use of this source code is governed by the Apache License
+// that can be found in the LICENSE file.
+
+/*
+Package api pertains to the Spruce API server-side components. All API
+handlers are implemented in this package.
+*/
 package api
 
 import (
@@ -17,6 +25,9 @@ type apiManager struct {
 	app    *sprucelib.SpruceApp
 }
 
+// Returns an http.Handler which mounts the API URI handlers at the supplied
+// prefix.
+//
 func MountAt(prefix string, app *sprucelib.SpruceApp) http.Handler {
 	m := apiManager{prefix: prefix}
 	m.router = mux.NewRouter().PathPrefix(m.prefix).Subrouter()
