@@ -8,6 +8,7 @@ import (
 	"strings"
 	"syscall"
 
+	"github.com/sprucecms/spruce/admin"
 	"github.com/sprucecms/spruce/api"
 	"github.com/sprucecms/spruce/cms"
 	"github.com/sprucecms/spruce/sprucelib"
@@ -21,7 +22,7 @@ func main() {
 
 	apiHandler := api.MountAt(apiPrefix, app)
 	cmsHandler := cms.MountAt("/", app)
-	adminHandler := http.StripPrefix(adminPrefix, http.FileServer(http.Dir(app.AdminDir())))
+	adminHandler := admin.MountAt(adminPrefix, app)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, apiPrefix) {
