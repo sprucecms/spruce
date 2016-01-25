@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'spruceadmin',
     environment: environment,
-    baseURL: '/',
+    baseURL: '/admin', // Needs to be configured to match the Spruce admin path
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
