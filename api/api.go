@@ -34,6 +34,7 @@ func MountAt(prefix string, app *sprucelib.SpruceApp) http.Handler {
 	m.app = app
 
 	m.router.HandleFunc("/", m.apiMetadata)
+	m.router.HandleFunc("/token", m.oauth2Token)
 
 	return m.router
 }
@@ -46,5 +47,15 @@ func (m apiManager) apiMetadata(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		Version string
 	}{Version: Version}
+	json.NewEncoder(w).Encode(data)
+}
+
+func (m apiManager) oauth2Token(w http.ResponseWriter, r *http.Request) {
+	// TODO actually authenticate
+	data := struct {
+		AccessToken string `json:"access_token"`
+		TokenType   string `json:"token_type"`
+		ExpiresIn   int    `json:"expires_in"`
+	}{AccessToken: "TODOMAKETHISAREALTOKEN", TokenType: "bearer", ExpiresIn: 3153600000}
 	json.NewEncoder(w).Encode(data)
 }
