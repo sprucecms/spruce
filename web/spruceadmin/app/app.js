@@ -8,10 +8,13 @@ let App;
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 App = Ember.Application.extend({
+  rootElement: '#EmberRoot',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
+  Resolver: Resolver,
+  LOG_TRANSITIONS: true,
 });
+
 
 loadInitializers(App, config.modulePrefix);
 

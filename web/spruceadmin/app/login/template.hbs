@@ -1,0 +1,24 @@
+<div class="pure-g" style="text-align: center;">
+  <div class="pure-u-1-1 pure-u-md-2-5" style="text-align: left; margin: 0 auto;">
+    <h2>Login</h2>
+
+    <form {{action 'login' on='submit'}} class="pure-form-aligned">
+      {{#if errorMessage}}
+        <div>{{errorMessage}}</div>
+      {{/if}}
+
+
+      <div class="pure-control-group">
+        <label for="email">Email Address</label>
+        {{input id='email' placeholder='user@example.com' value=email}}
+      </div>
+      <div class="pure-control-group">
+        <label for="password">Password</label>
+        {{input id='password' placeholder='password' type='password' value=password}}
+      </div>
+      <div class="pure-controls">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

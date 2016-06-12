@@ -1,3 +1,21 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="pure-g" style="text-align: left;">
+  <div class="pure-u-1-1">
+    <div class="pure-menu pure-menu-horizontal">
+      <span class="pure-menu-heading">Spruce</span>
 
-{{outlet}}
+      <ul class="pure-menu-list">
+        {{#if session.isAuthenticated}}
+          <li class="pure-menu-item"><a href="#" {{action 'invalidateSession'}}>Logout</a></li>
+        {{else}}
+          <li class="pure-menu-item">{{#link-to "login"}}Login{{/link-to}}</li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pure-g" style="text-align: center;">
+  <div class="pure-u-1-1" style="text-align: left; max-width: 800px; margin: 0 auto;">
+    {{outlet}}
+  </div>
+</div>
