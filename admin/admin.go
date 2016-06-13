@@ -11,6 +11,7 @@ package admin
 import (
 	"net/http"
 	"regexp"
+	"strings"
 
 	"github.com/sprucecms/spruce/sprucelib"
 )
@@ -35,7 +36,7 @@ func MountAt(prefix string, app *sprucelib.SpruceApp) http.HandlerFunc {
 			// If the URL doesn't have a file extension (i.e. .png, .js, etc), then
 			// it is likely a faux URL using the HTML5 History API, so we override
 			// the URL to '/'
-			r.URL.Path = prefix + "/" // TODO trailing double slash possibility?
+			r.URL.Path = strings.Replace(prefix+"/", "//", "/", -1) // TODO is protection against // necessary?
 		}
 		fileServer.ServeHTTP(w, r)
 	}
