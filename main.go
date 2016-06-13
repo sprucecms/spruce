@@ -8,17 +8,26 @@ import (
 	"strings"
 	"syscall"
 
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/sprucecms/spruce/admin"
 	"github.com/sprucecms/spruce/api"
 	"github.com/sprucecms/spruce/cms"
 	"github.com/sprucecms/spruce/sprucelib"
 )
 
-const apiPrefix = "/api/v1"  // TODO /api/ part should be a config param (and it should be passed dynamically to the JS
-const adminPrefix = "/admin" // TODO /admin/ part should be a config param
+const apiPrefix = "/api/v1"  // TODO /api/ part should be a config param (and it should be passed dynamically to the JS)
+const adminPrefix = "/admin" // TODO /admin/ part should be a config param to support security-through-obscurity strategies
 
 func main() {
+
+	db, err := gorm.Open("postgres", "host=localhost user=root dbname=dev_spruce sslmode=disable password=")
+	db.AutoMigrate(&sprucelib.User{})
+	if err != nil {
+		panic(err)
+	}
 	app := sprucelib.NewSpruceApp()
+	app.DataStore = sprucelib.SqlDataStore{DB: db}
 
 	apiHandler := api.MountAt(apiPrefix, app)
 	cmsHandler := cms.MountAt("/", app)

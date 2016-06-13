@@ -10,6 +10,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -51,6 +52,15 @@ func (m apiManager) apiMetadata(w http.ResponseWriter, r *http.Request) {
 }
 
 func (m apiManager) oauth2Token(w http.ResponseWriter, r *http.Request) {
+
+	username := r.PostFormValue("username")
+	password := r.PostFormValue("password")
+	user, err := m.app.DataStore.GetUserByUsernameAndPassword(username, password)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("user.username", user.Username)
+
 	// TODO actually authenticate
 	data := struct {
 		AccessToken string `json:"access_token"`

@@ -10,6 +10,7 @@ package cms
 
 import (
 	"fmt"
+	// "html/template"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -38,5 +39,11 @@ func MountAt(prefix string, app *lib.SpruceApp) http.Handler {
 }
 
 func (m cmsManager) handler(w http.ResponseWriter, r *http.Request) {
+	// Find resource (on disk)
+	// Process content
+	// Determine layout
+	// Process layout (injecting content)
+
+	// t := template.New("layout")
 	fmt.Fprintf(w, "No rendering features enabled yet. Path: '%s'", r.URL.Path)
 }
