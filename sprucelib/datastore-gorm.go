@@ -1,15 +1,9 @@
 package sprucelib
 
 import (
-	"errors"
-
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 )
-
-var ErrUnknownUser = errors.New("Unknown user")
-var ErrInvalidToken = errors.New("Invalid token")
-var ErrIncorrectPassword = errors.New("Incorrect password")
 
 type SqlDataStore struct {
 	DB *gorm.DB
