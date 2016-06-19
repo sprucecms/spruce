@@ -11,6 +11,8 @@ type BoltDataStore struct {
 	DB *bolt.DB
 }
 
+// NewBoltDataStore opens a new connection to a BoltDB database.
+//
 func NewBoltDataStore() (db BoltDataStore, err error) {
 	// TODO Make the database path configurable.
 	bdb, err := bolt.Open("spruce.db", 0600, nil)
@@ -22,10 +24,16 @@ func NewBoltDataStore() (db BoltDataStore, err error) {
 	return ds, err
 }
 
+// Closes the underlying BoltDB database. Ensure this is called before the application
+// exits.
 func (ds BoltDataStore) Close() {
 	ds.DB.Close()
 }
 
+// CreateBuckets ensures all the BoltDB buckets used by the application are created. This function is
+// called automatically by NewBoltDataStore(). If some other means is used to get a BoltDataStore,
+// this function may need to be called manually to ensure the buckets exist.
+//
 func (ds BoltDataStore) CreateBuckets() {
 	err := ds.DB.Update(func(tx *bolt.Tx) error {
 		tx.CreateBucketIfNotExists([]byte("resources"))
