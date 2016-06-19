@@ -9,9 +9,9 @@ export default Ember.Route.extend({
       var password = this.controller.get('password');
 
       this.get('session').authenticate('authenticator:oauth2', email, password).catch(function(reason) {
+        alert(reason.error || error);
         this.set('errorMessage', reason.error || reason);
       });
-      alert("Login for " + email);
     }
   }
 });
