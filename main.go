@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/sprucecms/spruce/admin"
 	"github.com/sprucecms/spruce/api"
 	"github.com/sprucecms/spruce/cms"
@@ -21,13 +20,18 @@ const adminPrefix = "/admin" // TODO /admin/ part should be a config param to su
 
 func main() {
 
-	db, err := gorm.Open("postgres", "host=localhost user=root dbname=dev_spruce sslmode=disable password=")
-	db.AutoMigrate(&sprucelib.User{})
-	if err != nil {
-		panic(err)
-	}
+	// db, err := gorm.Open("postgres", "host=localhost user=root dbname=dev_spruce sslmode=disable password=")
+	// db.AutoMigrate(&sprucelib.User{})
+	// if err != nil {
+	// 	panic(err)
+	// }
+	var err error
 	app := sprucelib.NewSpruceApp()
-	app.DataStore = sprucelib.SqlDataStore{DB: db}
+	app.DataStore, err = sprucelib.NewBoltDataStore()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer app.DataStore.Close()
 
 	apiHandler := api.MountAt(apiPrefix, app)
 	cmsHandler := cms.MountAt("/", app)

@@ -57,15 +57,19 @@ func (m apiManager) oauth2Token(w http.ResponseWriter, r *http.Request) {
 	password := r.PostFormValue("password")
 	user, err := m.app.DataStore.GetUserByUsernameAndPassword(username, password)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("err", err)
+		data := struct {
+			Error string `json:"error"`
+		}{Error: "invalid_client"}
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(data)
+	} else {
+		fmt.Println("user", user.Username)
+		data := struct {
+			AccessToken string `json:"access_token"`
+			TokenType   string `json:"token_type"`
+			ExpiresIn   int    `json:"expires_in"`
+		}{AccessToken: "NOTAREALTOKEN", TokenType: "bearer", ExpiresIn: 3153600000}
+		json.NewEncoder(w).Encode(data)
 	}
-	fmt.Println("user.username", user.Username)
-
-	// TODO actually authenticate
-	data := struct {
-		AccessToken string `json:"access_token"`
-		TokenType   string `json:"token_type"`
-		ExpiresIn   int    `json:"expires_in"`
-	}{AccessToken: "TODOMAKETHISAREALTOKEN", TokenType: "bearer", ExpiresIn: 3153600000}
-	json.NewEncoder(w).Encode(data)
 }
