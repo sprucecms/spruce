@@ -16,7 +16,6 @@ open "http://brewhouse.io/blog/2015/02/12/ember-vs-angular-authentication.html"
 open "https://github.com/BrewhouseTeam/ember-auth-example/blob/master/app/templates/public.hbs"
 open "http://localhost:1818/admin/"
 
-
 Jun 12 - You began transferring some logic from the derbyphoto project to use gorm and PostgreSQL as the
          implementation of the DataStore interface. Login checking was just about ready to be worked.
 
