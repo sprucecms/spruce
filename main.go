@@ -40,6 +40,8 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, apiPrefix) {
 			apiHandler.ServeHTTP(w, r)
+		} else if r.URL.Path == adminPrefix {
+			http.Redirect(w, r, adminPrefix+"/", http.StatusFound) // TODO http.StatusMovedPermanently
 		} else if strings.HasPrefix(r.URL.Path, adminPrefix) {
 			adminHandler.ServeHTTP(w, r)
 		} else {
