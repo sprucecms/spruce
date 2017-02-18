@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "bio" : "",
+  "faceImage" : {
+    "dataType": "image",
+    "cropRatios": {
+    },
+    "variants": {
+      "thumbnail": {
+      }
+    }
+  }
+
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html ng-app="weavedesktop" class="no-js" lang="en" load-status="loading">
+    <head>
+        <meta charset="utf-8">
+        <meta charset=utf-8>
+        <title>Weave Desktop</title>
+ 
+        <!--[if lt IE 9]> HTML5Shiv
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/sandbox/package/weave_desktop/style.css">
+ 
+    </head>
+    <body weave-desktop role="application" ng-class="{ working: waiting }" ng-controller="WeaveDesktopController">
+        
+        <header weave-bar>
+            <h1 weave-icon>Weave</h1>
+        </header>
+
+        <section weave-canvas>
+            <article weave-entity-editor>
+                <header>
+                    <h1 weave-entity-name contenteditable>{{ editorData.title }}</h1>
+                    <span weave-entity-type>{{ editorData.type }}</span>
+                </header>
+                <section>
+
+                    <!-- UI Control: Text -->
+                    <div ui-control ui-control-type="text">
+                        <label ui-control-label>Text field</label>
+                        <div ui-control-field contenteditable>This is the value of this field.</div>
+                    </div>
+
+                    <!-- UI Control: Text -->
+                    <div ui-control ui-control-type="text">
+                        <label ui-control-label>This field has a long label</label>
+                        <div ui-control-field contenteditable>This is the value of this field. The label and the value of the field
+                            are very long, and they should wrap. So, yeah.</div>
+                        <div ui-control-help-label>This is some damn help text.</div>
+                    </div>
+
+                    <!-- UI Control: Select -->
+                    <div ui-control ui-control-type="select">
+                        <label ui-control-label>Choose Team</label>
+                        <div ui-control-field>
+                            <select>
+                                <option>Oklahoma City Thunder</option>
+                                <option disabled>Seattle Supersonics</option>
+                                <option>San Antonio Spurs</option>
+                                <option>Los Angeles Lakers</option>
+                            </select>
+                        </div>
+                        <div ui-control-help-label>Select the team you want to follow. Some teams may no longer be available.</div>
+                    </div>
+
+                    <!-- UI Control: Options (Radio) -->
+                    <div ui-control ui-control-type="options">
+                        <label ui-control-label>What's your favorite league?</label>
+                        <div ui-control-field>
+                            <label ui-control-option><input type="radio" value="nfl"> NFL</label>
+                            <label ui-control-option><input type="radio" value="nba"> NBA</label>
+                            <label ui-control-option><input type="radio" value="nhl"> NHL</label>
+                            <label ui-control-option><input type="radio" value="mls"> MLS</label>
+                        </div>
+                        <div ui-control-help-label>Help text is here.</div>
+                    </div>
+
+                    <!-- UI Control: Options (Checkboxes) -->
+                    <div ui-control ui-control-type="options">
+                        <label ui-control-label>Check some things</label>
+                        <div ui-control-field>
+                            <label ui-control-option><input type="checkbox" value="a"> ABC</label>
+                            <label ui-control-option><input type="checkbox" value="b"> DEF</label>
+                            <label ui-control-option><input type="checkbox" value="c"> GHI</label>
+                            <label ui-control-option><input type="checkbox" value="d"> JKL</label>
+                            <label ui-control-option><input type="checkbox" value="c"> MNO</label>
+                            <label ui-control-option><input type="checkbox" value="d"> PQR</label>
+                        </div>
+                        <div ui-control-help-label>Help text is here.</div>
+                    </div>
+
+                    <!-- UI Control: Text -->
+                    <div ui-control ui-control-type="code" ui-control-extension="codemirror">
+                        <label ui-control-label>HTML Code</label>
+                        <div ui-control-field codemirror-mode="html" codemirror-theme="default">
+                            <textarea><header>
+    <p>My name is /co(l+)in/</p>
+</header></textarea>
+                        </div>
+                    </div>
+
+                </section>
+            </article>
+        </section>
+
+        <script src="./js/lib/jquery-1.8.2.min.js"></script>
+        <script src="./js/lib/underscore-min.js"></script>
+        
+        <!-- CodeMirror Code Editor -->
+        <script src="./js/lib/codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="./js/lib/codemirror/lib/codemirror.css">
+
+        <!-- Angular -->
+        <script src="./js/lib/angular-1.1.0.min.js"></script>
+
+        <!-- Weave -->
+        <script src="./data/data.js"></script>
+        <script src="./js/weavedesktop.js"></script>
+
+    </body>
+</html>

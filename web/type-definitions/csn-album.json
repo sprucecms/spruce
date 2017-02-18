@@ -1,0 +1,51 @@
+[
+  { "name": "title", "label": "Title", "dataType": "string" },
+
+  { "name" : "description", "label": "Description", "dataType": "markup" },
+
+  { "name": "originalReleaseDate", "label" : "Original Release Date", "dataType": "date" },
+
+  { "name" : "digitallyRemasteredDate", "label": "Digital Remaster Release Date", "dataType": "date" },
+
+  {
+    "name": "coverImage",
+    "label": "Cover Image",
+    "dataType": "image",
+
+    "variants": {
+      "thumbnail": {
+        "geometry": "75x75^",
+        "cropGravity": "center"
+      },
+      "small": {
+        "geometry": "138x138^",
+        "cropGravity": "center"
+      },
+      "medium": {
+        "geometry": "300x300^",
+        "cropGravity": "center"
+      }
+    }
+  },
+
+  { "name": "discs",
+    "label": "Discs",
+    "dataType": "container",
+    "limit": "*",
+    "children": {
+      "title": {
+        "dataType": "string",
+        "label": "Disc Title"
+      }, 
+      "tracks": { 
+        "label": "Tracks",
+        "limit": "*",
+        "children": {
+          "+title": {
+            "dataType": "string"
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,11 @@
+{
+  name: "Weave Desktop"
+  ,description: "Lightweight prototype for playing with Weave ideas. Eventually the place you go in Weave when you have no where else to go."
+  
+  /*
+  ,css: ["file1.css", "file2.css"]
+  ,css_preprocessor: "less",
+  ,js: ["file1.css", "file2.css"]
+  ,js_preprocessor: "coffeescript",
+  */
+}
