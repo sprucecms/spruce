@@ -3,7 +3,7 @@ package sprucelib
 import (
 	"path/filepath"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 type SpruceApp struct {
