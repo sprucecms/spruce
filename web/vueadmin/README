@@ -1,0 +1,11 @@
+The administration interface for Spruce is a VueJS application that interacts
+with the Spruce API.
+
+To build it, run:
+
+ npm install
+ npm run build
+
+If you're actively developing on the admin interface, run
+
+  npm run watch

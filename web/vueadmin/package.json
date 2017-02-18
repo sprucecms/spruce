@@ -1,0 +1,33 @@
+{
+  "name": "vueadmin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-webpack": "^2.0.1",
+    "html-webpack-plugin": "^2.28.0",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.10",
+    "vue-loader": "^10.2.3",
+    "vue-resource": "^1.1.2",
+    "vue-router": "^2.2.0",
+    "vue-template-compiler": "^2.1.10",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^1.16.3"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "watch": "grunt watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
