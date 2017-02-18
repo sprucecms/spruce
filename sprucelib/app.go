@@ -23,7 +23,7 @@ func NewSpruceApp() *SpruceApp {
 }
 
 func (app *SpruceApp) AdminDir() string {
-	dir := "./web/vueadmin/dist"
+	dir := "./web/admin/dist"
 	if app.adminDir != "" {
 		dir = app.adminDir
 	}
