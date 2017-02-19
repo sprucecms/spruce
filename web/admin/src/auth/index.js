@@ -16,6 +16,9 @@ export default {
   },
 
   checkAuth() {
+    if(!user.authenticated) {
+      router.push('/login');
+    }
   },
 
   getAuthHeader() {
