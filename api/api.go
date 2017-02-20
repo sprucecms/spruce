@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
-
 	"github.com/sprucecms/spruce/sprucelib"
 )
 
@@ -35,9 +35,14 @@ func MountAt(prefix string, app *sprucelib.SpruceApp) http.Handler {
 	m.app = app
 
 	m.router.HandleFunc("/", m.apiMetadata)
-	m.router.HandleFunc("/token", m.oauth2Token)
+	m.router.HandleFunc("/oauth2/token", m.oauth2Token)
 
 	return m.router
+}
+
+func (m apiManager) requireAuthentication(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	})
 }
 
 // GET /<APIPrefix>/
@@ -51,25 +56,40 @@ func (m apiManager) apiMetadata(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(data)
 }
 
+type tokenResponse struct {
+	Error       string `json:"error,omitempty"`
+	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
+	ExpiresIn   int    `json:"expires_in"`
+}
+
+// POST /<APIPrefix>/oauth2/token
+//
+// Used to request an OAuth2 bearer token.
+//
 func (m apiManager) oauth2Token(w http.ResponseWriter, r *http.Request) {
 
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
+
+	fmt.Println(username)
+	fmt.Println(password)
+
 	user, err := m.app.DataStore.GetUserByUsernameAndPassword(username, password)
 	if err != nil {
 		fmt.Println("err", err)
-		data := struct {
-			Error string `json:"error"`
-		}{Error: "invalid_client"}
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(data)
+		json.NewEncoder(w).Encode(tokenResponse{Error: "invalid_client"})
 	} else {
-		fmt.Println("user", user.Username)
-		data := struct {
-			AccessToken string `json:"access_token"`
-			TokenType   string `json:"token_type"`
-			ExpiresIn   int    `json:"expires_in"`
-		}{AccessToken: "NOTAREALTOKEN", TokenType: "bearer", ExpiresIn: 3153600000}
-		json.NewEncoder(w).Encode(data)
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+			"sub":      fmt.Sprintf("%d", user.ID),
+			"username": fmt.Sprintf("%s", user.Username),
+			"admin":    "true",
+		})
+		signedToken, err := token.SignedString([]byte("B8F24148A16532328E4EE5DC8DEAE")) // TODO Change this secret
+		if err != nil {
+			panic(err)
+		}
+		json.NewEncoder(w).Encode(tokenResponse{AccessToken: signedToken, TokenType: "bearer", ExpiresIn: 315600000})
 	}
 }
