@@ -1,0 +1,73 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Z/gwISedxg/Os0Y4hhvDF9dCipw=",
+			"path": "github.com/boltdb/bolt",
+			"revision": "315c65d4cf4f5278c73477a35fb1f9b08365d340",
+			"revisionTime": "2016-11-09T22:02:51Z"
+		},
+		{
+			"checksumSHA1": "2Fy1Y6Z3lRRX1891WF/+HT4XS2I=",
+			"path": "github.com/dgrijalva/jwt-go",
+			"revision": "2268707a8f0843315e2004ee4f1d021dc08baedf",
+			"revisionTime": "2017-02-01T22:58:49Z"
+		},
+		{
+			"checksumSHA1": "R0sq9fb8mrPJHP59uo5+9AbFSe8=",
+			"path": "github.com/gorilla/context",
+			"revision": "1be7a086a5fd6440ef16fe96baeda0c78282b980",
+			"revisionTime": "2014-03-06T18:06:40Z"
+		},
+		{
+			"checksumSHA1": "/VTDCYGjVsuXr4zy7ZVMnc6kFlI=",
+			"path": "github.com/gorilla/mux",
+			"revision": "9ede152210fa25c1377d33e867cb828c19316445",
+			"revisionTime": "2013-12-05T07:16:17Z"
+		},
+		{
+			"checksumSHA1": "TUt/L3HArGhZAN1LjQmCY/tKOfk=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "39165d498058a823126af3cbf4d2a3b0e1acf11e",
+			"revisionTime": "2016-10-07T14:19:28Z"
+		},
+		{
+			"checksumSHA1": "9Fb+a7sS7os6y+72DjHAVegPBwY=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "3272df6c21d04180007eb3349844c89a3856bc25",
+			"revisionTime": "2015-10-09T08:41:29Z"
+		},
+		{
+			"checksumSHA1": "54KD43WIvcTlbnVcdwA40/BDt6c=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "7f4b1adc791766938c29457bed0703fb9134421a",
+			"revisionTime": "2017-02-15T16:43:24Z"
+		},
+		{
+			"checksumSHA1": "vE43s37+4CJ2CDU6TlOUOYE0K9c=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "aedad9a179ec1ea11b7064c57cbc6dc30d7724ec",
+			"revisionTime": "2015-07-28T17:55:38Z"
+		},
+		{
+			"checksumSHA1": "udD2DzUPFZbMVXP0VNADhef4zKk=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "aedad9a179ec1ea11b7064c57cbc6dc30d7724ec",
+			"revisionTime": "2015-07-28T17:55:38Z"
+		},
+		{
+			"checksumSHA1": "CoRxz7vk573Zu/UcMS4PzpAsv3w=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "b776ec39b3e54652e09028aaaaac9757f4f8211a",
+			"revisionTime": "2016-04-21T02:29:30Z"
+		},
+		{
+			"checksumSHA1": "i+zCpgve9Fdb3PmEkKVrb5X52cA=",
+			"path": "gopkg.in/guregu/null.v2",
+			"revision": "5bc3c32da7d04df1bcea52382b239d6dcf4e6ded",
+			"revisionTime": "2014-09-17T00:52:39Z"
+		}
+	],
+	"rootPath": "github.com/sprucecms/spruce"
+}
