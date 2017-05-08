@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         entry: './src/main.js',
         output: {
           filename: 'main.js',
-          path: 'dist'
+          path: __dirname + '/dist'
         },
         stats: { colors: true },
         module: {
