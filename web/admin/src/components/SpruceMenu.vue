@@ -5,6 +5,6 @@
       <li>Templates</li>
       <li>Users</li>
     </ul>
-  <nav>
+  </nav>
 </template>
 
